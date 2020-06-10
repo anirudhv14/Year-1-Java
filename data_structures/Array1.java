@@ -1,3 +1,4 @@
+
 package data_structures;
 
 public class Array1 implements Seq
@@ -44,7 +45,6 @@ public class Array1 implements Seq
 
 	public boolean isEmpty()
 	{
-		System.out.println("ABC");
 		return size==0;
 	}
 
@@ -85,12 +85,20 @@ public class Array1 implements Seq
 				ctr=i+1;
 				break;
 			}
-			
-				
 		}
-			return ctr;
+		return ctr;
 	}
 
+	public int ind(int ii)
+	{
+		return arr[ii];
+	}
+	
+	public int lengthh()
+	{
+		return size;
+	}
+	
 	public static void main(String args[])
 	{
 		Seq k=new Array1(5);
@@ -105,7 +113,7 @@ public class Array1 implements Seq
 		System.out.println(k.search(3));
 		
 		System.out.println("List:");
-		Seq k1=new LinkedLIST();
+		LinkedLIST k1=new LinkedLIST();
 		for(int i=1;i<=10;i++)
 		{
 			k1.append(i);

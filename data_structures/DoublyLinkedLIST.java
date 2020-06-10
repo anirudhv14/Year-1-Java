@@ -119,6 +119,7 @@ public class DoublyLinkedLIST
 		o.print();
 		
 		o.delete(0);
+		o.delete(2);
 		o.print();
 		
 	}

@@ -99,7 +99,7 @@ public class Array
 	public static void main(String args[])
 	{
 		Array o=new Array();
-		for(int i=0;i<10;i++)
+		for(int i=1;i<=10;i++)
 		{
 			o.append(i+1);
 		}

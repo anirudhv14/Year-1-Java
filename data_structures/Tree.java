@@ -148,12 +148,14 @@ public class Tree
 	public void inorder_rec(TNode r)
 	{
 //		if(r==null)
-//			System.out.print(".");
+//			System.out.print("-");
 		if(r!=null)
 		{
+			System.out.print("(");
 			inorder_rec(r.left);
 			System.out.print(r.data+" ");
 			inorder_rec(r.right);
+			System.out.print(")");
 		}
 	}
 	

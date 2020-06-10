@@ -37,7 +37,6 @@ public class LinkedLIST implements Seq
 	}
 	public boolean isEmpty()
 	{
-		System.out.println("ABC");
 		return (start==null);
 	}
 	public void print()
@@ -88,15 +87,5 @@ public class LinkedLIST implements Seq
 			return ++ctr;
 		else
 			return -1;
-	}
-	public static void main(String args[])
-	{
-		LinkedLIST o=new LinkedLIST();
-		o.insert(12,0);
-		o.insert(13, 1);
-//		System.out.println(o.size);
-		o.print();
-		
-		o.delete(1);
 	}
 }
