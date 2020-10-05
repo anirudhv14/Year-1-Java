@@ -1,6 +1,9 @@
 package coronavirus_project;
 
-
+/*
+ * The following class is an Array datastructure which  can append to any length 
+ * and automatically updates the length when it runs out of storage.
+ */
 public class Array 
 {
 	String arr[];

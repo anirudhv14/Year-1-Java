@@ -1,5 +1,10 @@
 package coronavirus_project;
 
+/*
+ * The following linked list is a special linked list for the following problem.
+ * It has a String and a Hashlist in each node. This is used to store the cases 
+ * in each country, 
+ */
 public class LinkedLIST_Spl
 {
 	class Node
@@ -21,11 +26,14 @@ public class LinkedLIST_Spl
 
 
 	};
+	
 	Node start,last;
 	public LinkedLIST_Spl() 
 	{
 		start=last=null;
 	}
+	
+	// append() - function to add nodes to the linked list
 	public void append(String n)
 	{
 		if(isEmpty())
@@ -36,15 +44,26 @@ public class LinkedLIST_Spl
 			last=last.next;
 		}
 	}
+	
+	/*
+	 * appendHList() - function to append the HashList  to the 
+	 * specific node in the Linked List 
+	 */
 	public void appendHList(String v,String v1,String v2,String v3,LinkedLIST_Spl ll)
 	{
 		ll.last.hmap.put(v,null,v1,v2,v3);
 	}
+	
+	// isEmpty() - function to check whether the linked list is empty
 	public boolean isEmpty()
 	{
 		return (start==null);
 	}
 
+	/*
+	 *  search() - function to search and return the total cases for 
+	 *  the date in a particular country.
+	 */
 	public String[] search(String name, String date)
 	{
 		LinkedLIST_Spl.Node ptr = search(name);
@@ -69,6 +88,10 @@ public class LinkedLIST_Spl
 		return arrAll;
 	}
 
+	/*
+	 *  search() - searches the linked list for the node and 
+	 *  returns the node(if found).
+	 */
 	public Node search(String val)
 	{
 		int f=0;

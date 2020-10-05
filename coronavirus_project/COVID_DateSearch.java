@@ -3,13 +3,19 @@ import data_structures.LinkedLIST;
 import trees.Tree_Rotation;
 import java.util.*;
 import java.io.*;
-
 @SuppressWarnings("unused")
+
+/*
+ * The following project requires us to feed the CSV file containing the dataset  
+ * for the confirmed, recovered and dead cases in a country on a particular date.
+ */
 public class COVID_DateSearch 
 {
+	// variables to initially store the particular column from the dataset in arrays.
 	String countryNames[],dates[],confirmed[],dead[],recovered[];
 	int size;
 
+	// constructor to initialize the variables declared earlier
 	public COVID_DateSearch(int s)
 	{
 		size = s;
@@ -20,9 +26,14 @@ public class COVID_DateSearch
 		recovered = new String[size];
 	}
 
+	/*
+	 * input() - function to extract the input the value from the csv file
+	 * to the arrays created earlier.
+	 */
 	public void input(String fileName)
 	{
 		String delimiter = ",";
+		// 'try catch' block to catch exceptions
 		try 
 		{
 			File file = new File(fileName);
@@ -51,8 +62,6 @@ public class COVID_DateSearch
 					dead[ctr] = tempArr[7];
 					recovered[ctr] = tempArr[8];
 				}
-				if(ctr == size-2)
-					System.out.println();
 				ctr++;
 			}
 			br.close();
@@ -63,6 +72,10 @@ public class COVID_DateSearch
 		}
 	}
 
+	/*
+	 * inputData() - function to input the country names along with each date
+	 * and the cases into the hashlist
+	 */
 	public HashList inputData(int s)
 	{
 		HashList h = new HashList(s);
@@ -79,6 +92,12 @@ public class COVID_DateSearch
 		return h;
 	}
 	
+	/*
+	 * printDatewise() - function to print the the cases with the date and the 
+	 * country name. It has 2 cases: one to check for country name only and print
+	 * all the dates cases and the other to  check for name and date so to print 
+	 * only for 1 date in the country.
+	 */
 	public void printDatewise(String name,String date12,int val, LinkedLIST_Spl LL)
 	{
 		if(val == 0)
@@ -170,6 +189,10 @@ public class COVID_DateSearch
 		}
 	}
 	
+	/*
+	 * inputDatesData() - function to input the dates for a specific country into the
+	 * special linked list.
+	 */
 	public void inputDatesData(LinkedLIST_Spl LL,HashList h)
 	{
 		for(int j = 0;j < h.arr.size; j++)
@@ -185,6 +208,7 @@ public class COVID_DateSearch
 		}
 	}
 	
+	// getForSpecificDay() - function to calculate the cases for a specific day.
 	public String[] getForSpecificDay(String d,LinkedLIST_Spl.Node LL,int j)
 	{
 		if(j == 0)
@@ -206,6 +230,7 @@ public class COVID_DateSearch
 		}
 	}
 	
+	// dateFormatting() - function to format the date from "dd-mm-yy" to "mm/dd/yyyy" 
 	public String dateFormating(String d)
 	{
 		String c[] = d.split("-");
@@ -220,6 +245,11 @@ public class COVID_DateSearch
 		return date;
 	}
 	
+	/*
+	 *  checkRecovered() - function to check whether a certain country has recovered from 
+	 *  COVID19. It checks the last 14 days and if on all 14 days the confirmed cases are 0 
+	 *  it returns true.
+	 */
 	public boolean checkRecovered(String name, LinkedLIST_Spl LL)
 	{
 		int ctr = 1,f=0;
@@ -248,6 +278,7 @@ public class COVID_DateSearch
 			return false;
 	}
 	
+	// checkAllCountries() - function to check all the COVID recovered countries
 	public void checkAllCountries(LinkedLIST_Spl LL)
 	{
 		for(LinkedLIST_Spl.Node ptr = LL.start; ptr != null; ptr = ptr.next)
@@ -263,44 +294,14 @@ public class COVID_DateSearch
 		try
 		{
 			long T1 =  java.lang.System.currentTimeMillis();
-			int s = 36569;
+			int s = 42992;
 			COVID_DateSearch t1 = new COVID_DateSearch(s);
-			t1.input("covid_19_data_new.csv");
+			t1.input("covid_19_data.csv");
 			HashList h = t1.inputData(s);
 			LinkedLIST_Spl LL = new LinkedLIST_Spl();
 			t1.inputDatesData(LL,h);
 			long T2 =  java.lang.System.currentTimeMillis();
 
-			System.out.println("Would you like to find all the COVID-19 Free countries?(Yes/No)");
-			String yon2 = br.readLine();
-			if(yon2.equalsIgnoreCase("yes"))
-			{
-				t1.checkAllCountries(LL);
-			}
-			
-			System.out.println("Would you like to get the cases for all days present in the dataset?(Yes/No)");
-			String yon = br.readLine();
-			if(yon.equalsIgnoreCase("yes"))
-			{
-				System.out.println("Enter the country name:");
-				String countryName = br.readLine();
-				System.out.println();
-				t1.printDatewise(countryName,null,0,LL);
-			}
-			
-			System.out.println("Would you like to check for a COVID-19 Free country?(Yes/No)");
-			String yon1 = br.readLine();
-			if(yon1.equalsIgnoreCase("yes"))
-			{
-				System.out.println("Enter the country name:");
-				String countryName = br.readLine();
-				if(t1.checkRecovered(countryName,LL))
-					System.out.println(countryName+" has recoverd...");
-				else
-					System.out.println(countryName+" has not recoverd...");
-				System.out.println();
-			}
-			
 			System.out.println("Would you like to check the cases for a country on a specific day?(Yes/No)");
 			String yon3 = br.readLine();
 			if(yon3.equalsIgnoreCase("yes"))
@@ -324,6 +325,40 @@ public class COVID_DateSearch
 				else
 					System.out.println(T4-T3+" Milliseconds taken to search and output the required data...");
 			}
+			System.out.println();
+			
+			System.out.println("Would you like to find all the COVID-19 Free countries?(Yes/No)");
+			String yon2 = br.readLine();
+			if(yon2.equalsIgnoreCase("yes"))
+			{
+				t1.checkAllCountries(LL);
+			}
+			System.out.println();
+			
+			System.out.println("Would you like to get the cases for all days present in the dataset?(Yes/No)");
+			String yon = br.readLine();
+			if(yon.equalsIgnoreCase("yes"))
+			{
+				System.out.println("Enter the country name:");
+				String countryName = br.readLine();
+				System.out.println();
+				t1.printDatewise(countryName,null,0,LL);
+			}
+			System.out.println();
+			
+			System.out.println("Would you like to check for a COVID-19 Free country?(Yes/No)");
+			String yon1 = br.readLine();
+			if(yon1.equalsIgnoreCase("yes"))
+			{
+				System.out.println("Enter the country name:");
+				String countryName = br.readLine();
+				if(t1.checkRecovered(countryName,LL))
+					System.out.println(countryName+" has recoverd...");
+				else
+					System.out.println(countryName+" has not recoverd...");
+				System.out.println();
+			}
+			
 			System.out.println();
 			System.out.println(T2-T1+" Milliseconds taken to group and input readings from the CSV file to the memory...");
 		}

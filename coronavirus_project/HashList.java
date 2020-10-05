@@ -3,6 +3,10 @@ import coronavirus_project.Array;
 
 public class HashList
 {
+	/*
+	 * Data class is to store the key, and values as per the dataset.
+	 * key stores the unique element as a hash. along with values.
+	 */
 	class Data
 	{
 		String key;
@@ -29,6 +33,8 @@ public class HashList
 		}
 	};
 	
+	
+	//The Node class is to store each data as a node in the linked list.	
 	class Node
 	{
 		Data data;
@@ -41,9 +47,9 @@ public class HashList
 		}
 	};
 	
-	Node map[];
-	Array arr;
-	int size;
+	Node map[];// stores the hashlist
+	Array arr;// array to store the unique elements in a hashlist
+	int size;// size to store the size of the array
 	public HashList(int size)
 	{
 		map = new Node[size];
@@ -51,6 +57,10 @@ public class HashList
 		this.size = 0;
 	}
 	
+	/*
+	 * uniqueKey() - function to check whether the key is unique or not;
+	 * it checks through the array to check for an equality.
+	 */
 	public boolean uniqueKey(String k)
 	{
 		int z = 0; 
@@ -72,32 +82,16 @@ public class HashList
 		return false;
 	}
 	
-	public boolean uniqueValue(String v)
-	{
-		int z = 0; 
-		for(int i = 0; i < map.length;i++)
-		{
-			if(map[i] != null)
-			{
-				Node ptr = map[i];
-				while(ptr != null)
-				{
-					if(ptr.data.value.equals(v))
-						z = 1;
-					ptr = ptr.next;
-				}
-			}
-		}
-		if(z == 0)
-			return true;
-		return false;
-	}
-	
+	// hash() - returns the location in the map to store the key and values
 	public int hash(Data n)
 	{
 		return n.hashCode() % map.length;
 	}
 	
+	/*
+	 * put() - function to store values into the hashmap array. It check whether
+	 * a key is unique and stores it into the map as well as the array.
+	 */
 	public void put(String k ,String v ,String v1 ,String v2 ,String v3)
 	{
 		Data d = new Data(k,v,v1,v2,v3);
@@ -120,18 +114,8 @@ public class HashList
 			n.prev = ptr;
 		}
 	}
-	
-
-	public String get(String k)
-	{
-		int h = java.lang.Math.abs(k.hashCode() % map.length);
 		
-		Node ptr = map[h];
-		while(ptr != null && !(ptr.data.key.equals(k)))
-			ptr = ptr.next;
-		return ((ptr == null)? null : ptr.data.value);		
-	}
-	
+	// retreiveAll() - function to retrieve the all values for the required key. 
 	public String[] retrieveAll(String k)
 	{
 		int h = java.lang.Math.abs(k.hashCode() % map.length);
@@ -156,6 +140,7 @@ public class HashList
 		return vals;
 	}
 	
+	// getAll() - function to get all the values in the hash map for the specific key
 	public String[] getAll(String k)
 	{
 		int h = java.lang.Math.abs(k.hashCode() % map.length);
@@ -169,6 +154,11 @@ public class HashList
 		}
 		return vals.trim().split(" ");		
 	}
+	
+	/*
+	 * getAllDates() - function to get the dates with the dead recovered and confirmed
+	 * for the entered country. 
+	 */
 	
 	public String[][] getAllDates(String k,int l)
 	{
