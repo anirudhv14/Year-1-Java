@@ -18,6 +18,11 @@ public class CBT
 			System.err.println("ArrayIndexOutOfBoundsException!!");
 	}
 	
+	public boolean isEmpty()
+	{
+		return size == 0;
+	}
+	
 	private int left_r(int n)
 	{
 		int k=2*n+1;
@@ -49,7 +54,7 @@ public class CBT
 			return tree[k];
 	}
 	
-	private int left_traversal(int n)
+	public int left_traversal(int n)
 	{
 		return n*2+1;
 	}
@@ -85,11 +90,18 @@ public class CBT
 			return tree[k];
 	}
 	
-	private int right_traversal(int n)
+	public int right_traversal(int n)
 	{
 		return n*2+2;
 	}
 	
+	public int parent_index(int n)
+	{
+		if(n>0)
+			return (n-1)/2;
+		else
+			return -1;
+	}
 	
 	private int parent_r(int n)
 	{

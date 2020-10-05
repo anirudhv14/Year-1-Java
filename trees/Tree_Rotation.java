@@ -1,5 +1,6 @@
 package trees;
 import data_structures.Tree;
+
 public class Tree_Rotation extends Tree
 {
 	TNode root=null;
@@ -81,9 +82,11 @@ public class Tree_Rotation extends Tree
 	{
 		if (n != null) 
 		{
+			System.out.print("(");
 			inorder(n.left);
 			System.out.print(" " + n.data);
 			inorder(n.right);
+			System.out.print(")");
 		}
 	}
 	
@@ -109,22 +112,44 @@ public class Tree_Rotation extends Tree
 		System.out.println();
 	}
 	
+	@SuppressWarnings("static-access")
 	public static void main(String args[])
 	{
 		Tree_Rotation o=new Tree_Rotation();
+		Tree k = new Tree();
 		o.insert(4);
+		k.insert(4);
+		
 		o.insert(2);
+		k.insert(2);
+		
 		o.insert(1);
+		k.insert(1);
+		
 		o.insert(5);
+		k.insert(5);
+		
 		o.insert(6);
+		k.insert(6);
+		
 		o.insert(9);
+		k.insert(9);
+		
 		o.insert(14);
+		k.insert(14);
+		
 		o.insert(11);
+		k.insert(11);
+		
 		o.insert(10);
+		k.insert(10);
+		
 		o.insert(20);
-		System.out.println("Inorder traversal of AVL Tree:");
-		o.inorder();
-		o.preorder();
+		k.insert(20);
+		System.out.println("Inorder traversal of Tree:");
+		k.inorder();
+		k.preorder();
+		System.out.println("Old root="+k.root.data);
 		System.out.println("New root="+o.root.data);
 		o.inorder();
 		o.preorder();
