@@ -4,6 +4,7 @@ public class Delegation
 {
 	static EventListener eventArray[]=new EventListener[10];
 	static int count=0;
+	@SuppressWarnings("unused")
 	public static void main(String args[]) 
 	{
 		A a1=new A("Krish");
